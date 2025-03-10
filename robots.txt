@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /cgi-bin/
+Sitemap: https://www.worldtextilehub.com/sitemap.xml
