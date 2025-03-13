@@ -156,7 +156,7 @@ window.addEventListener('scroll', () => {
 // ✅ Fetch and Display Textile Reports from GitHub
 async function fetchReports() {
     try {
-        let response = await fetch("https://raw.githubusercontent.com/your-github-username/your-repository/main/reports.json");
+		let response = await fetch("https://raw.githubusercontent.com/Mitesh222/World-Textile-Hub/main/reports.json");
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
