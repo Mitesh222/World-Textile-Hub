@@ -153,10 +153,10 @@ window.addEventListener('scroll', () => {
         navbar.style.backgroundColor = window.scrollY > 50 ? '#001122' : 'transparent';
     }
 });
-// ✅ Fetch and Display Textile News from GitHub
+/// ✅ Fetch and Display Textile News from GitHub
 async function fetchNews() {
     try {
-        let response = await fetch("https://raw.githubusercontent.com/Mitesh222/World-Textile-Hub/main/reports.json");
+        let response = await fetch("https://raw.githubusercontent.com/Mitesh222/World-Textile-Hub/main/news.json");
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -170,23 +170,16 @@ async function fetchNews() {
 
         container.innerHTML = ""; // Clear previous content
 
-        Object.keys(data).forEach(category => {
-            let categoryDiv = document.createElement("div");
-            categoryDiv.classList.add("news-category");
-            categoryDiv.innerHTML = `<h3>${category}</h3>`;
-
-            data[category].forEach(news => {
-                let newsDiv = document.createElement("div");
-                newsDiv.classList.add("news-card");
-                newsDiv.innerHTML = `
-                    <h4><a href="${news.link}" target="_blank">${news.title}</a></h4>
-                    <p>${news.summary}</p>
-                    <small>Source: <a href="${news.source}" target="_blank">${new URL(news.source).hostname}</a></small>
-                `;
-                categoryDiv.appendChild(newsDiv);
-            });
-
-            container.appendChild(categoryDiv);
+        // Iterate over news articles (assuming flat list format)
+        data.forEach(news => {
+            let newsDiv = document.createElement("div");
+            newsDiv.classList.add("news-card");
+            newsDiv.innerHTML = `
+                <h4><a href="${news.link}" target="_blank">${news.title}</a></h4>
+                <p>${news.summary}</p>
+                <small>Source: <a href="${news.source}" target="_blank">${new URL(news.source).hostname}</a></small>
+            `;
+            container.appendChild(newsDiv);
         });
 
     } catch (error) {
