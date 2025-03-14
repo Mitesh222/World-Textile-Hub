@@ -153,18 +153,18 @@ window.addEventListener('scroll', () => {
         navbar.style.backgroundColor = window.scrollY > 50 ? '#001122' : 'transparent';
     }
 });
-// ✅ Fetch and Display Textile Reports from GitHub
-async function fetchReports() {
+// ✅ Fetch and Display Textile News from GitHub
+async function fetchNews() {
     try {
-		let response = await fetch("https://raw.githubusercontent.com/Mitesh222/World-Textile-Hub/main/reports.json");
+        let response = await fetch("https://raw.githubusercontent.com/Mitesh222/World-Textile-Hub/main/reports.json");
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
         let data = await response.json();
-        let container = document.getElementById("reports-container");
+        let container = document.getElementById("news-container");
 
         if (!container) {
-            console.error("❌ reports-container not found!");
+            console.error("❌ news-container not found!");
             return;
         }
 
@@ -172,34 +172,35 @@ async function fetchReports() {
 
         Object.keys(data).forEach(category => {
             let categoryDiv = document.createElement("div");
-            categoryDiv.classList.add("report-category");
+            categoryDiv.classList.add("news-category");
             categoryDiv.innerHTML = `<h3>${category}</h3>`;
 
-            data[category].forEach(report => {
-                let reportDiv = document.createElement("div");
-                reportDiv.classList.add("report-card");
-                reportDiv.innerHTML = `
-                    <h4><a href="${report.link}" target="_blank">${report.title}</a></h4>
-                    <p>${report.summary}</p>
-                    <small>Source: <a href="${report.source}" target="_blank">${new URL(report.source).hostname}</a></small>
+            data[category].forEach(news => {
+                let newsDiv = document.createElement("div");
+                newsDiv.classList.add("news-card");
+                newsDiv.innerHTML = `
+                    <h4><a href="${news.link}" target="_blank">${news.title}</a></h4>
+                    <p>${news.summary}</p>
+                    <small>Source: <a href="${news.source}" target="_blank">${new URL(news.source).hostname}</a></small>
                 `;
-                categoryDiv.appendChild(reportDiv);
+                categoryDiv.appendChild(newsDiv);
             });
 
             container.appendChild(categoryDiv);
         });
 
     } catch (error) {
-        console.error("❌ Error fetching reports:", error);
-        let container = document.getElementById("reports-container");
+        console.error("❌ Error fetching news:", error);
+        let container = document.getElementById("news-container");
         if (container) {
-            container.innerHTML = "<p>Failed to load reports.</p>";
+            container.innerHTML = "<p>Failed to load news.</p>";
         }
     }
 }
 
-// ✅ Load reports when the page loads
-document.addEventListener("DOMContentLoaded", fetchReports);
+// ✅ Load news when the page loads
+document.addEventListener("DOMContentLoaded", fetchNews);
+
 // ✅ GSAP (TweenMax) Carousel Fix
 if (typeof TweenMax === "undefined") {
     console.error("TweenMax is not loaded. Make sure to include GSAP in index.html.");
