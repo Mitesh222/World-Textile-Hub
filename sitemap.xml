@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
@@ -8,3 +10,20 @@
     </url>
     <!-- Repeat this for each page on your site -->
 </urlset>
+=======
+=======
+>>>>>>> c4ccc73ba556e52000e9ba54ec40400593e9e413
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://www.worldtextilehub.com/</loc>
+        <lastmod>2024-09-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <!-- Repeat this for each page on your site -->
+</urlset>
+<<<<<<< HEAD
+>>>>>>> 68127e3 (Added website files)
+=======
+>>>>>>> c4ccc73ba556e52000e9ba54ec40400593e9e413

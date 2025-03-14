@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -933,4 +935,946 @@ document.querySelector('.contact-form form').addEventListener('submit', function
 });
 
 
+=======
+=======
+>>>>>>> c4ccc73ba556e52000e9ba54ec40400593e9e413
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Textile Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="#" class="logo">World Textile Hub</a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#consulting">Consulting</a></li>
+                    <li><a href="#sectors">Sectors</a></li>
+                    <li><a href="#technical-assistance">Technical Assistance</a></li>
+                    <li><a href="#msme-support">MSME Support</a></li>
+                    <li><a href="#problems">Problems & Solutions</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content container">
+            <h1>Innovating the Future of Textiles</h1>
+            <p>Your one-stop destination for comprehensive textile solutions and expert consulting services.</p>
+            <a href="#consulting" class="btn btn-primary">Explore Our Services</a>
+        </div>
+        <div class="hero-images">
+            <img src="https://via.placeholder.com/600x800" alt="Textile Image 1" class="hero-image">
+            <img src="https://via.placeholder.com/600x800" alt="Textile Image 2" class="hero-image">
+            <img src="https://via.placeholder.com/600x800" alt="Textile Image 3" class="hero-image">
+        </div>
+    </section>
+
+    <!-- Professional Consulting Section -->
+    <section id="consulting" class="consulting-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Professional Consulting</h2>
+                <p>Work with our experts to tackle industry-specific problems and enhance your business.</p>
+            </div>
+            <div class="consulting-content">
+                <div class="consulting-image">
+                    <img src="https://via.placeholder.com/500x400" alt="Consulting">
+                </div>
+                <div class="consulting-text">
+                    <p>At World Textile Hub, we offer unparalleled consulting services tailored to meet the unique needs of your textile business. Our team of seasoned professionals brings a wealth of experience across various domains in the textile industry, ensuring you receive insightful and actionable guidance.</p>
+                    <ul>
+                        <li>Strategic Planning and Development</li>
+                        <li>Operational Efficiency Optimization</li>
+                        <li>Market Analysis and Expansion Strategies</li>
+                        <li>Sustainability and Compliance Consulting</li>
+                        <li>Technology Integration and Innovation</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sectors Section -->
+    <section id="sectors" class="sectors-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Expertise Across Sectors</h2>
+                <p>We provide specialized consulting services across various sectors in the textile industry.</p>
+            </div>
+            <div class="sectors-grid">
+                <!-- Sector 1 -->
+                <div class="sector-card">
+                    <div class="sector-image">
+                        <img src="https://via.placeholder.com/400x300" alt="Textile Manufacturers">
+                    </div>
+                    <div class="sector-content">
+                        <h3>Textile Manufacturers</h3>
+                        <p>Optimizing production processes and enhancing product quality for large-scale manufacturers.</p>
+                        <button class="btn btn-link" data-modal-target="#manufacturer-modal">Learn More</button>
+                    </div>
+                </div>
+                <!-- Sector 2 -->
+                <div class="sector-card">
+                    <div class="sector-image">
+                        <img src="https://via.placeholder.com/400x300" alt="Handloom Industry">
+                    </div>
+                    <div class="sector-content">
+                        <h3>Handloom Industry</h3>
+                        <p>Preserving tradition while integrating modern techniques for sustainable growth.</p>
+                        <button class="btn btn-link" data-modal-target="#handloom-modal">Learn More</button>
+                    </div>
+                </div>
+                <!-- Sector 3 -->
+                <div class="sector-card">
+                    <div class="sector-image">
+                        <img src="https://via.placeholder.com/400x300" alt="Garments and Apparel">
+                    </div>
+                    <div class="sector-content">
+                        <h3>Garments and Apparel</h3>
+                        <p>Enhancing design, production, and distribution strategies for fashion and apparel brands.</p>
+                        <button class="btn btn-link" data-modal-target="#garments-modal">Learn More</button>
+                    </div>
+                </div>
+                <!-- Sector 4 -->
+                <div class="sector-card">
+                    <div class="sector-image">
+                        <img src="https://via.placeholder.com/400x300" alt="Machinery Solutions">
+                    </div>
+                    <div class="sector-content">
+                        <h3>Machinery Solutions</h3>
+                        <p>Providing guidance on acquiring and maintaining advanced textile machinery.</p>
+                        <button class="btn btn-link" data-modal-target="#machinery-modal">Learn More</button>
+                    </div>
+                </div>
+                <!-- Sector 5 -->
+                <div class="sector-card">
+                    <div class="sector-image">
+                        <img src="https://via.placeholder.com/400x300" alt="Used Machinery Procurement">
+                    </div>
+                    <div class="sector-content">
+                        <h3>Used Machinery Procurement</h3>
+                        <p>Assisting in sourcing and integrating cost-effective pre-owned machinery solutions.</p>
+                        <button class="btn btn-link" data-modal-target="#used-machinery-modal">Learn More</button>
+                    </div>
+                </div>
+                <!-- Sector 6 -->
+                <div class="sector-card">
+                    <div class="sector-image">
+                        <img src="https://via.placeholder.com/400x300" alt="Technical Textiles">
+                    </div>
+                    <div class="sector-content">
+                        <h3>Technical Textiles</h3>
+                        <p>Advancing innovation in high-performance and functional textile products.</p>
+                        <button class="btn btn-link" data-modal-target="#technical-textiles-modal">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expert Technical Assistance Section -->
+    <section id="technical-assistance" class="technical-assistance-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Expert Technical Assistance</h2>
+                <p>Get the technical support you need to address challenges and improve operations.</p>
+            </div>
+            <div class="technical-assistance-content">
+                <div class="technical-assistance-text">
+                    <p>Our dedicated technical team offers comprehensive support to ensure your operations run smoothly and efficiently. From troubleshooting machinery issues to implementing advanced production techniques, we're here to assist you every step of the way.</p>
+                    <ul>
+                        <li>24/7 Technical Support</li>
+                        <li>On-site and Remote Assistance</li>
+                        <li>Process Optimization</li>
+                        <li>Quality Control and Assurance</li>
+                        <li>Training and Development Programs</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary">Request Assistance</a>
+                </div>
+                <div class="technical-assistance-image">
+                    <img src="https://via.placeholder.com/500x400" alt="Technical Assistance">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support for Textile MSMEs Section -->
+    <section id="msme-support" class="msme-support-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Support for Textile MSMEs</h2>
+                <p>Access resources and services designed specifically for Micro, Small, and Medium Enterprises in the textile industry.</p>
+            </div>
+            <div class="msme-support-content">
+                <div class="msme-support-image">
+                    <img src="https://via.placeholder.com/500x400" alt="MSME Support">
+                </div>
+                <div class="msme-support-text">
+                    <p>We understand the unique challenges faced by MSMEs in the textile sector. Our specialized support services are crafted to help you overcome obstacles, enhance competitiveness, and achieve sustainable growth.</p>
+                    <ul>
+                        <li>Business Development Services</li>
+                        <li>Funding and Investment Support</li>
+                        <li>Market Access and Networking</li>
+                        <li>Skill Development and Training</li>
+                        <li>Regulatory Compliance Assistance</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems & Solutions Section -->
+    <section id="problems" class="problems-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Problems & Solutions</h2>
+                <p>Identifying industry challenges and providing effective solutions to keep your business ahead.</p>
+            </div>
+            <div class="problems-grid">
+                <!-- Problem 1 -->
+                <div class="problem-card">
+                    <h3>Problem: High Production Costs</h3>
+                    <p>Solution: Implement lean manufacturing techniques and optimize resource management to reduce costs.</p>
+                </div>
+                <!-- Problem 2 -->
+                <div class="problem-card">
+                    <h3>Problem: Low Market Reach</h3>
+                    <p>Solution: Develop targeted marketing strategies and explore new distribution channels.</p>
+                </div>
+                <!-- Problem 3 -->
+                <div class="problem-card">
+                    <h3>Problem: Technological Obsolescence</h3>
+                    <p>Solution: Upgrade to modern machinery and integrate advanced technologies to stay competitive.</p>
+                </div>
+                <!-- Problem 4 -->
+                <div class="problem-card">
+                    <h3>Problem: Regulatory Compliance</h3>
+                    <p>Solution: Receive expert guidance on navigating complex regulations and ensure full compliance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Us</h2>
+                <p>Get in touch with our team to learn more about our services or to request a consultation.</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <ul>
+                        <li><i class="fas fa-phone-alt"></i> +123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@worldtextilehub.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Textile Street, City, Country</li>
+                    </ul>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form action="#" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="tel" name="phone" placeholder="Your Phone Number">
+                        <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 World Textile Hub. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#consulting">Consulting</a></li>
+                <li><a href="#sectors">Sectors</a></li>
+                <li><a href="#technical-assistance">Technical Assistance</a></li>
+                <li><a href="#msme-support">MSME Support</a></li>
+                <li><a href="#problems">Problems & Solutions</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div class="modal" id="manufacturer-modal">
+        <div class="modal-content">
+            <span class="close-button" data-close-button>&times;</span>
+            <h2>Textile Manufacturers</h2>
+            <p>Our consulting services for textile manufacturers focus on enhancing production efficiency, reducing waste, and improving overall product quality. We work closely with your team to identify key areas for improvement and implement sustainable solutions that drive growth.</p>
+        </div>
+    </div>
+    <div class="modal" id="handloom-modal">
+        <div class="modal-content">
+            <span class="close-button" data-close-button>&times;</span>
+            <h2>Handloom Industry</h2>
+            <p>The handloom industry holds a special place in our hearts. We provide consulting that respects traditional methods while introducing modern innovations to ensure that your handloom business thrives in today's market.</p>
+        </div>
+    </div>
+    <div class="modal" id="garments-modal">
+        <div class="modal-content">
+            <span class="close-button" data-close-button>&times;</span>
+            <h2>Garments and Apparel</h2>
+            <p>From design to distribution, our experts help garments and apparel businesses streamline their operations, enhance brand visibility, and increase market share. We tailor our strategies to meet your specific needs and market demands.</p>
+        </div>
+    </div>
+    <div class="modal" id="machinery-modal">
+        <div class="modal-content">
+            <span class="close-button" data-close-button>&times;</span>
+            <h2>Machinery Solutions</h2>
+            <p>Our team offers specialized consulting for acquiring and maintaining advanced textile machinery. We help you select the right equipment, ensure proper installation, and provide ongoing support to maximize your investment.</p>
+        </div>
+    </div>
+    <div class="modal" id="used-machinery-modal">
+        <div class="modal-content">
+            <span class="close-button" data-close-button>&times;</span>
+            <h2>Used Machinery Procurement</h2>
+            <p>We assist in sourcing high-quality pre-owned machinery that meets your operational needs. Our experts evaluate and recommend machinery that offers the best value without compromising on performance.</p>
+        </div>
+    </div>
+    <div class="modal" id="technical-textiles-modal">
+        <div class="modal-content">
+            <span class="close-button" data-close-button>&times;</span>
+            <h2>Technical Textiles</h2>
+            <p>We specialize in consulting for technical textiles, helping businesses innovate and develop high-performance products that meet the demands of modern industries. Our services include R&D support, market analysis, and product testing.</p>
+        </div>
+    </div>
+    <div id="overlay"></div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
+
+
+This is html 
+
+
+/* Global Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #1a1a1a;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar .logo {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+}
+
+.navbar .nav-links li {
+    margin-left: 20px;
+}
+
+.navbar .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.navbar .menu-toggle {
+    display: none;
+    color: #fff;
+    font-size: 24px;
+}
+
+/* Hero Section */
+.hero {
+    background-color: #004d40;
+    color: #fff;
+    padding: 120px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    z-index: 1;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+
+.hero .btn-primary {
+    background-color: #00796b;
+    color: #fff;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.hero .btn-primary:hover {
+    background-color: #005a48;
+}
+
+.hero-images {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 20px;
+    opacity: 0.15;
+}
+
+.hero-image {
+    max-width: 200px;
+    border-radius: 10px;
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-header h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #004d40;
+}
+
+.section-header p {
+    font-size: 18px;
+    color: #666;
+}
+
+/* Consulting Section */
+.consulting-section {
+    background-color: #fff;
+    padding: 60px 0;
+}
+
+.consulting-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.consulting-image img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.consulting-text p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.consulting-text ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.consulting-text li {
+    margin-bottom: 10px;
+}
+
+.consulting-text .btn-secondary {
+    background-color: #004d40;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.consulting-text .btn-secondary:hover {
+    background-color: #003830;
+}
+
+/* Sectors Section */
+.sectors-section {
+    background-color: #f4f4f4;
+    padding: 60px 0;
+}
+
+.sectors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.sector-card {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.sector-card:hover {
+    transform: translateY(-5px);
+}
+
+.sector-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.sector-content {
+    padding: 20px;
+}
+
+.sector-content h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #004d40;
+}
+
+.sector-content p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.sector-content .btn-link {
+    color: #00796b;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.sector-content .btn-link:hover {
+    text-decoration: underline;
+}
+
+/* Technical Assistance Section */
+.technical-assistance-section {
+    background-color: #fff;
+    padding: 60px 0;
+}
+
+.technical-assistance-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.technical-assistance-text p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.technical-assistance-text ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.technical-assistance-text li {
+    margin-bottom: 10px;
+}
+
+.technical-assistance-text .btn-secondary {
+    background-color: #004d40;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.technical-assistance-text .btn-secondary:hover {
+    background-color: #003830;
+}
+
+.technical-assistance-image img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+/* MSME Support Section */
+.msme-support-section {
+    background-color: #f4f4f4;
+    padding: 60px 0;
+}
+
+.msme-support-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.msme-support-image img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.msme-support-text p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.msme-support-text ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.msme-support-text li {
+    margin-bottom: 10px;
+}
+
+.msme-support-text .btn-secondary {
+    background-color: #004d40;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.msme-support-text .btn-secondary:hover {
+    background-color: #003830;
+}
+
+/* Problems Section */
+.problems-section {
+    background-color: #fff;
+    padding: 60px 0;
+}
+
+.problems-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.problem-card {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.problem-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #004d40;
+}
+
+.problem-card p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Contact Section */
+.contact-section {
+    background-color: #f4f4f4;
+    padding: 60px 0;
+}
+
+.contact-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-info h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #004d40;
+}
+
+.contact-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-info li {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.contact-info i {
+    color: #00796b;
+    margin-right: 10px;
+}
+
+.contact-form {
+    flex: 1;
+}
+
+.contact-form h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #004d40;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.contact-form button {
+    background-color: #00796b;
+    color: #fff;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background-color: #005a48;
+}
+
+/* Footer */
+footer {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+footer .footer-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+footer .footer-links li {
+    margin: 0;
+}
+
+footer .footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+footer .footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* Modals */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content {
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #00796b;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .navbar .nav-links {
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: #1a1a1a;
+        width: 100%;
+        display: none;
+    }
+
+    .navbar .nav-links.active {
+        display: flex;
+    }
+
+    .navbar .menu-toggle {
+        display: block;
+        cursor: pointer;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .consulting-content,
+    .technical-assistance-content,
+    .msme-support-content,
+    .contact-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+
+
+this is css
+
+
+// Toggle Navbar Menu
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
+
+// Modal Functionality
+const modals = document.querySelectorAll('.modal');
+const overlay = document.getElementById('overlay');
+const closeButtons = document.querySelectorAll('[data-close-button]');
+
+// Function to open a modal
+function openModal(modal) {
+    if (modal == null) return;
+    modal.style.display = 'block';
+    overlay.style.display = 'block';
+}
+
+// Function to close a modal
+function closeModal(modal) {
+    if (modal == null) return;
+    modal.style.display = 'none';
+    overlay.style.display = 'none';
+}
+
+// Add event listeners to modal open buttons
+document.querySelectorAll('[data-modal-target]').forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = document.querySelector(button.dataset.modalTarget);
+        openModal(modal);
+    });
+});
+
+// Add event listeners to modal close buttons
+closeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = button.closest('.modal');
+        closeModal(modal);
+    });
+});
+
+// Close modal when clicking on the overlay
+overlay.addEventListener('click', () => {
+    modals.forEach(modal => closeModal(modal));
+});
+
+// Form submission (dummy handler)
+document.querySelector('.contact-form form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    alert('Thank you for your message. We will get back to you soon.');
+    this.reset();
+});
+
+
+<<<<<<< HEAD
+>>>>>>> 68127e3 (Added website files)
+=======
+>>>>>>> c4ccc73ba556e52000e9ba54ec40400593e9e413
 This is js 
