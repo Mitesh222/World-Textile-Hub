@@ -155,17 +155,11 @@ window.addEventListener('scroll', () => {
 });
 /// ✅ Fetch and Display Textile News from GitHub
 async function fetchNews() {
-    console.log("🟢 Fetching news..."); // Debugging log
-
     try {
         let response = await fetch("https://raw.githubusercontent.com/Mitesh222/World-Textile-Hub/main/news.json");
-        if (!response.ok) {
-            throw new Error(`❌ HTTP error! Status: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`❌ HTTP error! Status: ${response.status}`);
 
         let data = await response.json();
-        console.log("🟢 Parsed JSON data:", data); // Debugging log
-
         let container = document.getElementById("news-container");
         if (!container) {
             console.error("❌ news-container not found!");
@@ -174,43 +168,32 @@ async function fetchNews() {
 
         container.innerHTML = ""; // Clear previous content
 
-        if (Object.keys(data).length === 0) {
-            container.innerHTML = "<p>No news articles available.</p>";
-            return;
-        }
-
-        // ✅ Loop over categories (e.g., "Industry Trends & Market Analysis")
         Object.keys(data).forEach(category => {
             let categoryDiv = document.createElement("div");
             categoryDiv.classList.add("news-category");
-            categoryDiv.innerHTML = `<h3>${category}</h3>`;
+            categoryDiv.innerHTML = `<h3>${category}</h3>`; // Category Title
+            container.appendChild(categoryDiv);
 
-            // ✅ Loop over articles within each category
             data[category].forEach(news => {
                 let newsDiv = document.createElement("div");
                 newsDiv.classList.add("news-card");
                 newsDiv.innerHTML = `
                     <h4><a href="${news.link}" target="_blank">${news.title}</a></h4>
                     <p>${news.summary}</p>
-                    <small>Source: <a href="${news.source}" target="_blank">${new URL(news.source).hostname}</a></small>
+                    <a href="${news.link}" class="read-more" target="_blank">Read More</a>
                 `;
                 categoryDiv.appendChild(newsDiv);
             });
-
-            container.appendChild(categoryDiv);
         });
 
     } catch (error) {
         console.error("❌ Error fetching news:", error);
-        let container = document.getElementById("news-container");
-        if (container) {
-            container.innerHTML = "<p>Failed to load news. Please try again later.</p>";
-        }
+        document.getElementById("news-container").innerHTML = "<p>Failed to load news.</p>";
     }
 }
 
-// ✅ Load news when the page loads
 document.addEventListener("DOMContentLoaded", fetchNews);
+
 
 
 // ✅ GSAP (TweenMax) Carousel Fix
@@ -224,3 +207,14 @@ if (typeof TweenMax === "undefined") {
 $(document).ready(function () {
     $(".carousel").hover(pauseCarouselAnimation, resumeCarouselAnimation);
 });
+
+
+window.addEventListener("scroll", () => {
+    let navbar = document.querySelector(".navbar");
+    if (window.scrollY > 50) {
+        navbar.style.backgroundColor = "#001122"; /* Darker background */
+    } else {
+        navbar.style.backgroundColor = "rgba(0, 34, 68, 0.9)";
+    }
+});
+
