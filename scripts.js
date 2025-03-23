@@ -1,19 +1,47 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // ✅ Ensure jQuery is loaded
-    if (typeof jQuery === "undefined") {
-        console.error("❌ jQuery is not loaded. Include it before scripts.js.");
-    }
+// scripts.js - Final Version with Search and Filter for News
 
-    // ✅ Mobile Menu Toggle
+// ✅ Carousel Pause/Resume Helpers
+let autoRotate;
+function pauseCarouselAnimation() {
+    let carousel = document.querySelector('.carousel');
+    if (carousel) {
+        carousel.style.animationPlayState = 'paused';
+        clearInterval(autoRotate);
+    }
+}
+
+function resumeCarouselAnimation() {
+    let carousel = document.querySelector('.carousel');
+    if (carousel) {
+        carousel.style.animationPlayState = 'running';
+        startAutoRotate();
+    }
+}
+
+function startAutoRotate() {
+    // Placeholder: Add your carousel auto-rotation logic here
+    // autoRotate = setInterval(...);
+}
+
+// ✅ Debounce Utility for Search Input
+function debounce(func, delay) {
+    let debounceTimer;
+    return function (...args) {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => func.apply(this, args), delay);
+    };
+}
+
+// ✅ DOM Ready
+window.addEventListener("DOMContentLoaded", function () {
+    // Mobile Menu Toggle
     let menuToggle = document.querySelector('.menu-toggle');
     let navLinks = document.querySelector('.nav-links');
     if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', function () {
-            navLinks.classList.toggle('active');
-        });
+        menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
     }
 
-    // ✅ Smooth Scroll
+    // Smooth Scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -24,209 +52,171 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // ✅ Modal Functionality
-    let openButtons = document.querySelectorAll('[data-modal-target]');
-    let closeButtons = document.querySelectorAll('[data-close-button]');
+    // Modal Handling
     let overlay = document.getElementById('overlay');
-
-    function openModal(modal) {
-        if (modal) {
-            modal.classList.add('active');
-            if (overlay) overlay.classList.add('active');
-            pauseCarouselAnimation();
-        }
-    }
-
-    function closeModal(modal) {
-        if (modal) {
-            modal.classList.remove('active');
-            if (overlay) overlay.classList.remove('active');
-            resumeCarouselAnimation();
-        }
-    }
-
-    openButtons.forEach(button => {
+    document.querySelectorAll('[data-modal-target]').forEach(button => {
         button.addEventListener('click', () => {
             let modal = document.querySelector(button.dataset.modalTarget);
-            openModal(modal);
+            if (modal) {
+                modal.classList.add('active');
+                overlay?.classList.add('active');
+                pauseCarouselAnimation();
+            }
         });
     });
 
-    closeButtons.forEach(button => {
+    document.querySelectorAll('[data-close-button]').forEach(button => {
         button.addEventListener('click', () => {
             let modal = button.closest('.modal');
-            closeModal(modal);
+            if (modal) {
+                modal.classList.remove('active');
+                overlay?.classList.remove('active');
+                resumeCarouselAnimation();
+            }
         });
     });
 
-    if (overlay) {
-        overlay.addEventListener('click', () => {
-            document.querySelectorAll('.modal.active').forEach(closeModal);
-        });
-    }
+    overlay?.addEventListener('click', () => {
+        document.querySelectorAll('.modal.active').forEach(modal => modal.classList.remove('active'));
+        overlay.classList.remove('active');
+        resumeCarouselAnimation();
+    });
 
-    // ✅ Flip Problem Cards
+    // Problem Cards Flip
     document.querySelectorAll('.problem-card').forEach(card => {
-        card.addEventListener('click', function () {
-            card.classList.toggle('is-flipped');
-        });
+        card.addEventListener('click', () => card.classList.toggle('is-flipped'));
     });
 
-    // ✅ Work with Us Section Toggle
+    // Work with Us Section
     let workWithUsBtn = document.getElementById('work-with-us-btn');
     let consultantFormSection = document.getElementById('consultant-form-section');
+    workWithUsBtn?.addEventListener('click', () => {
+        if (consultantFormSection?.style.display === 'none') {
+            consultantFormSection.style.display = 'block';
+            consultantFormSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
 
-    if (workWithUsBtn && consultantFormSection) {
-        workWithUsBtn.addEventListener('click', () => {
-            if (consultantFormSection.style.display === 'none') {
-                consultantFormSection.style.display = 'block';
-                consultantFormSection.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-    }
-
-    // ✅ Form Validation
+    // Form Validation
     let consultantForm = document.getElementById('consultant-form');
-    if (consultantForm) {
-        consultantForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            if (validateForm(consultantForm)) {
-                alert('Thank you for submitting your details. We will contact you soon!');
-                consultantForm.reset();
-                if (consultantFormSection) consultantFormSection.style.display = 'none';
-            } else {
-                alert('Please fill out all required fields.');
-            }
-        });
-    }
+    consultantForm?.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (validateForm(this)) {
+            alert('Thank you for submitting your details. We will contact you soon!');
+            this.reset();
+            consultantFormSection.style.display = 'none';
+        } else {
+            alert('Please fill out all required fields.');
+        }
+    });
 
     function validateForm(form) {
         let valid = true;
         form.querySelectorAll('input[required], textarea[required]').forEach(input => {
             if (!input.value.trim()) {
-                valid = false;
                 input.style.borderColor = 'red';
+                input.setAttribute('aria-invalid', 'true');
+                valid = false;
             } else {
                 input.style.borderColor = '#ccc';
+                input.removeAttribute('aria-invalid');
             }
         });
         return valid;
     }
 
-    // ✅ Navbar Background on Scroll
-    window.addEventListener("scroll", () => {
-        let navbar = document.querySelector(".navbar");
+    // Navbar Scroll Effect
+    window.addEventListener('scroll', () => {
+        let navbar = document.querySelector('.navbar');
         if (navbar) {
-            navbar.style.backgroundColor = window.scrollY > 50 ? "#001122" : "rgba(0, 34, 68, 0.9)";
+            navbar.style.backgroundColor = window.scrollY > 50 ? '#001122' : 'rgba(0, 34, 68, 0.9)';
         }
     });
 
-    // ✅ Fetch and Display Textile News
+    // Initialize News Fetch
     fetchNews();
-    async function fetchNews() {
+});
+
+// ✅ News Fetching and Filtering
+let allNewsData = {}; // Store fetched news globally
+
+async function fetchNews() {
     try {
         let response = await fetch("https://raw.githubusercontent.com/Mitesh222/World-Textile-Hub/main/news.json");
-
-        if (!response.ok) {
-            throw new Error(`❌ HTTP error! Status: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
         let data = await response.json();
-
-        // ✅ Log fetched data for debugging
-        console.log("✅ Fetched News Data:", data);
-
-        // ✅ Validate JSON structure: must be an object with categories
         if (!data || typeof data !== 'object') {
-            throw new Error("❌ Invalid JSON structure. Expected a category-based object.");
+            throw new Error("Invalid JSON structure. Expected category-based object.");
         }
 
-        let container = document.getElementById("news-container");
-        if (!container) {
-            console.error("❌ news-container not found!");
-            return;
-        }
-
-        container.innerHTML = ""; // Clear previous content
-
-        // ✅ Check if there’s at least one category with news
-        let hasNews = false;
-
-        Object.keys(data).forEach(category => {
-            if (Array.isArray(data[category]) && data[category].length > 0) {
-                hasNews = true;
-
-                let categoryDiv = document.createElement("div");
-                categoryDiv.classList.add("news-category");
-                categoryDiv.innerHTML = `<h3>${category}</h3>`; // Category title
-                container.appendChild(categoryDiv);
-
-                data[category].forEach(news => {
-                    let newsDiv = document.createElement("div");
-                    newsDiv.classList.add("news-card");
-                    newsDiv.innerHTML = `
-                        <h4><a href="${news.link}" target="_blank">${news.title}</a></h4>
-                        <p>${news.summary}</p>
-                        <a href="${news.link}" class="read-more" target="_blank">Read More</a>
-                    `;
-                    categoryDiv.appendChild(newsDiv);
-                });
-            }
-        });
-
-        // ✅ Show message if no news articles found
-        if (!hasNews) {
-            container.innerHTML = "<p>No news articles found.</p>";
-        }
+        allNewsData = data;
+        renderNews(data);
 
     } catch (error) {
-        console.error("❌ Error fetching news:", error);
-        let container = document.getElementById("news-container");
-        if (container) {
-            container.innerHTML = "<p>Failed to load news.</p>";
-        }
+        console.error("Error fetching news:", error);
+        document.getElementById("news-container").innerHTML = "<p>Failed to load news.</p>";
     }
 }
 
-// ✅ Load news after DOM is ready
-document.addEventListener("DOMContentLoaded", fetchNews);
+function renderNews(data) {
+    const container = document.getElementById("news-container");
+    container.innerHTML = "";
 
+    let hasNews = false;
 
-    // ✅ Carousel Pause/Resume Functions
-    let autoRotate;
-    function pauseCarouselAnimation() {
-        let carousel = document.querySelector('.carousel');
-        if (carousel) {
-            carousel.style.animationPlayState = 'paused';
-            clearInterval(autoRotate);
+    Object.keys(data).forEach(category => {
+        if (Array.isArray(data[category]) && data[category].length > 0) {
+            hasNews = true;
+
+            let categoryDiv = document.createElement("div");
+            categoryDiv.classList.add("news-category");
+            categoryDiv.innerHTML = `<h3>${category}</h3>`;
+            container.appendChild(categoryDiv);
+
+            data[category].forEach(news => {
+                let newsDiv = document.createElement("div");
+                newsDiv.classList.add("news-card");
+                newsDiv.innerHTML = `
+                    <h4><a href="${news.link}" target="_blank">${news.title}</a></h4>
+                    <p>${news.summary}</p>
+                    <a href="${news.link}" class="read-more" target="_blank">Read More</a>
+                `;
+                categoryDiv.appendChild(newsDiv);
+            });
         }
-    }
+    });
 
-    function resumeCarouselAnimation() {
-        let carousel = document.querySelector('.carousel');
-        if (carousel) {
-            carousel.style.animationPlayState = 'running';
-            startAutoRotate();
+    if (!hasNews) {
+        container.innerHTML = "<p>No news articles found.</p>";
+    }
+}
+
+// ✅ Filter Logic with Debounce
+const newsFilter = document.getElementById("newsFilter");
+const newsSearch = document.getElementById("newsSearch");
+
+newsFilter?.addEventListener("change", applyNewsFilter);
+newsSearch?.addEventListener("input", debounce(applyNewsFilter, 300));
+
+function applyNewsFilter() {
+    const searchQuery = newsSearch?.value.toLowerCase().trim() || "";
+    const selectedCategory = newsFilter?.value || "all";
+
+    let filteredData = {};
+
+    Object.keys(allNewsData).forEach(category => {
+        if (selectedCategory === "all" || selectedCategory === category) {
+            const filteredArticles = allNewsData[category].filter(news =>
+                news.title.toLowerCase().includes(searchQuery) ||
+                news.summary.toLowerCase().includes(searchQuery)
+            );
+
+            if (filteredArticles.length > 0) {
+                filteredData[category] = filteredArticles;
+            }
         }
-    }
+    });
 
-    // ✅ GSAP Check
-    if (typeof TweenMax === "undefined") {
-        console.warn("⚠️ TweenMax is not loaded. Include GSAP if animations require it.");
-    } else {
-        console.log("✅ TweenMax is loaded.");
-    }
-
-    // ✅ Carousel Hover (jQuery)
-    if (typeof $ !== "undefined") {
-        $(".carousel").hover(pauseCarouselAnimation, resumeCarouselAnimation);
-    }
-
-    // ✅ Placeholder: Define startAutoRotate if needed
-    function startAutoRotate() {
-        // Example placeholder for auto rotation logic if implemented
-        // autoRotate = setInterval(() => { ... }, 3000);
-    }
-
-    console.log("✅ All scripts initialized successfully.");
-});
+    renderNews(filteredData);
+}
