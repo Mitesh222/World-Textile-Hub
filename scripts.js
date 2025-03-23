@@ -124,23 +124,41 @@ document.addEventListener("DOMContentLoaded", function () {
     // ✅ Fetch and Display Textile News
     fetchNews();
     async function fetchNews() {
-        try {
-            let response = await fetch("https://raw.githubusercontent.com/Mitesh222/World-Textile-Hub/main/news.json");
-            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    try {
+        let response = await fetch("https://raw.githubusercontent.com/Mitesh222/World-Textile-Hub/main/news.json");
 
-            let data = await response.json();
-            let container = document.getElementById("news-container");
-            if (!container) {
-                console.error("❌ news-container not found!");
-                return;
-            }
+        if (!response.ok) {
+            throw new Error(`❌ HTTP error! Status: ${response.status}`);
+        }
 
-            container.innerHTML = ""; // Clear existing content
+        let data = await response.json();
 
-            Object.keys(data).forEach(category => {
+        // ✅ Log fetched data for debugging
+        console.log("✅ Fetched News Data:", data);
+
+        // ✅ Validate JSON structure: must be an object with categories
+        if (!data || typeof data !== 'object') {
+            throw new Error("❌ Invalid JSON structure. Expected a category-based object.");
+        }
+
+        let container = document.getElementById("news-container");
+        if (!container) {
+            console.error("❌ news-container not found!");
+            return;
+        }
+
+        container.innerHTML = ""; // Clear previous content
+
+        // ✅ Check if there’s at least one category with news
+        let hasNews = false;
+
+        Object.keys(data).forEach(category => {
+            if (Array.isArray(data[category]) && data[category].length > 0) {
+                hasNews = true;
+
                 let categoryDiv = document.createElement("div");
                 categoryDiv.classList.add("news-category");
-                categoryDiv.innerHTML = `<h3>${category}</h3>`;
+                categoryDiv.innerHTML = `<h3>${category}</h3>`; // Category title
                 container.appendChild(categoryDiv);
 
                 data[category].forEach(news => {
@@ -153,14 +171,26 @@ document.addEventListener("DOMContentLoaded", function () {
                     `;
                     categoryDiv.appendChild(newsDiv);
                 });
-            });
+            }
+        });
 
-        } catch (error) {
-            console.error("❌ Error fetching news:", error);
-            let container = document.getElementById("news-container");
-            if (container) container.innerHTML = "<p>Failed to load news.</p>";
+        // ✅ Show message if no news articles found
+        if (!hasNews) {
+            container.innerHTML = "<p>No news articles found.</p>";
+        }
+
+    } catch (error) {
+        console.error("❌ Error fetching news:", error);
+        let container = document.getElementById("news-container");
+        if (container) {
+            container.innerHTML = "<p>Failed to load news.</p>";
         }
     }
+}
+
+// ✅ Load news after DOM is ready
+document.addEventListener("DOMContentLoaded", fetchNews);
+
 
     // ✅ Carousel Pause/Resume Functions
     let autoRotate;
