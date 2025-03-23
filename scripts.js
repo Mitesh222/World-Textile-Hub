@@ -1,9 +1,7 @@
-// ✅ Fix: Ensure DOM is fully loaded before running scripts
 document.addEventListener("DOMContentLoaded", function () {
-    
-    // ✅ Fix: Ensure jQuery is loaded before using `$`
+    // ✅ Ensure jQuery is loaded
     if (typeof jQuery === "undefined") {
-        console.error("jQuery is not loaded. Make sure to include it before scripts.js.");
+        console.error("❌ jQuery is not loaded. Include it before scripts.js.");
     }
 
     // ✅ Mobile Menu Toggle
@@ -15,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ✅ Smooth Scroll Functionality
+    // ✅ Smooth Scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -34,14 +32,16 @@ document.addEventListener("DOMContentLoaded", function () {
     function openModal(modal) {
         if (modal) {
             modal.classList.add('active');
-            overlay.classList.add('active');
+            if (overlay) overlay.classList.add('active');
+            pauseCarouselAnimation();
         }
     }
 
     function closeModal(modal) {
         if (modal) {
             modal.classList.remove('active');
-            overlay.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
+            resumeCarouselAnimation();
         }
     }
 
@@ -61,160 +61,142 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (overlay) {
         overlay.addEventListener('click', () => {
-            document.querySelectorAll('.modal.active').forEach(modal => closeModal(modal));
+            document.querySelectorAll('.modal.active').forEach(closeModal);
         });
     }
 
-    console.log("✅ Initial scripts loaded successfully!");
-});
-// ✅ Fix: Carousel Controls
-let autoRotate;
-function pauseCarouselAnimation() {
-    let carousel = document.querySelector('.carousel');
-    if (carousel) {
-        carousel.style.animationPlayState = 'paused'; // Pause CSS animation
-        clearInterval(autoRotate); // Stop JS rotation
+    // ✅ Flip Problem Cards
+    document.querySelectorAll('.problem-card').forEach(card => {
+        card.addEventListener('click', function () {
+            card.classList.toggle('is-flipped');
+        });
+    });
+
+    // ✅ Work with Us Section Toggle
+    let workWithUsBtn = document.getElementById('work-with-us-btn');
+    let consultantFormSection = document.getElementById('consultant-form-section');
+
+    if (workWithUsBtn && consultantFormSection) {
+        workWithUsBtn.addEventListener('click', () => {
+            if (consultantFormSection.style.display === 'none') {
+                consultantFormSection.style.display = 'block';
+                consultantFormSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
     }
-}
 
-function resumeCarouselAnimation() {
-    let carousel = document.querySelector('.carousel');
-    if (carousel) {
-        carousel.style.animationPlayState = 'running'; // Resume CSS animation
-        startAutoRotate(); // Restart JS rotation
+    // ✅ Form Validation
+    let consultantForm = document.getElementById('consultant-form');
+    if (consultantForm) {
+        consultantForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (validateForm(consultantForm)) {
+                alert('Thank you for submitting your details. We will contact you soon!');
+                consultantForm.reset();
+                if (consultantFormSection) consultantFormSection.style.display = 'none';
+            } else {
+                alert('Please fill out all required fields.');
+            }
+        });
     }
-}
 
-// ✅ Pause carousel when modal opens
-document.querySelectorAll('[data-modal-target]').forEach(button => {
-    button.addEventListener('click', () => {
-        pauseCarouselAnimation();
-    });
-});
-
-// ✅ Resume carousel when modal closes
-document.querySelectorAll('[data-close-button]').forEach(button => {
-    button.addEventListener('click', () => {
-        resumeCarouselAnimation();
-    });
-});
-
-// ✅ Flip Problem Cards
-document.querySelectorAll('.problem-card').forEach(card => {
-    card.addEventListener('click', function () {
-        card.classList.toggle('is-flipped');
-    });
-});
-
-// ✅ Work with Us - Ensure Elements Exist
-let workWithUsBtn = document.getElementById('work-with-us-btn');
-let consultantFormSection = document.getElementById('consultant-form-section');
-
-if (workWithUsBtn && consultantFormSection) {
-    workWithUsBtn.addEventListener('click', () => {
-        if (consultantFormSection.style.display === 'none') {
-            consultantFormSection.style.display = 'block';
-            consultantFormSection.scrollIntoView({ behavior: 'smooth' });
-        }
-    });
-}
-// ✅ Form Validation
-let consultantForm = document.getElementById('consultant-form');
-if (consultantForm) {
-    consultantForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (validateForm(consultantForm)) {
-            alert('Thank you for submitting your details. We will contact you soon!');
-            consultantForm.reset();
-            document.getElementById('consultant-form-section').style.display = 'none';
-        } else {
-            alert('Please fill out all required fields.');
-        }
-    });
-}
-
-function validateForm(form) {
-    let valid = true;
-    form.querySelectorAll('input[required], textarea[required]').forEach(input => {
-        if (!input.value.trim()) {
-            valid = false;
-            input.style.borderColor = 'red';
-        } else {
-            input.style.borderColor = '#ccc';
-        }
-    });
-    return valid;
-}
-
-// ✅ Dynamic Navbar Background on Scroll
-window.addEventListener('scroll', () => {
-    let navbar = document.querySelector('.navbar');
-    if (navbar) {
-        navbar.style.backgroundColor = window.scrollY > 50 ? '#001122' : 'transparent';
+    function validateForm(form) {
+        let valid = true;
+        form.querySelectorAll('input[required], textarea[required]').forEach(input => {
+            if (!input.value.trim()) {
+                valid = false;
+                input.style.borderColor = 'red';
+            } else {
+                input.style.borderColor = '#ccc';
+            }
+        });
+        return valid;
     }
-});
-/// ✅ Fetch and Display Textile News from GitHub
-async function fetchNews() {
-    try {
-        let response = await fetch("https://raw.githubusercontent.com/Mitesh222/World-Textile-Hub/main/news.json");
-        if (!response.ok) throw new Error(`❌ HTTP error! Status: ${response.status}`);
 
-        let data = await response.json();
-        let container = document.getElementById("news-container");
-        if (!container) {
-            console.error("❌ news-container not found!");
-            return;
+    // ✅ Navbar Background on Scroll
+    window.addEventListener("scroll", () => {
+        let navbar = document.querySelector(".navbar");
+        if (navbar) {
+            navbar.style.backgroundColor = window.scrollY > 50 ? "#001122" : "rgba(0, 34, 68, 0.9)";
         }
+    });
 
-        container.innerHTML = ""; // Clear previous content
+    // ✅ Fetch and Display Textile News
+    fetchNews();
+    async function fetchNews() {
+        try {
+            let response = await fetch("https://raw.githubusercontent.com/Mitesh222/World-Textile-Hub/main/news.json");
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
-        Object.keys(data).forEach(category => {
-            let categoryDiv = document.createElement("div");
-            categoryDiv.classList.add("news-category");
-            categoryDiv.innerHTML = `<h3>${category}</h3>`; // Category Title
-            container.appendChild(categoryDiv);
+            let data = await response.json();
+            let container = document.getElementById("news-container");
+            if (!container) {
+                console.error("❌ news-container not found!");
+                return;
+            }
 
-            data[category].forEach(news => {
-                let newsDiv = document.createElement("div");
-                newsDiv.classList.add("news-card");
-                newsDiv.innerHTML = `
-                    <h4><a href="${news.link}" target="_blank">${news.title}</a></h4>
-                    <p>${news.summary}</p>
-                    <a href="${news.link}" class="read-more" target="_blank">Read More</a>
-                `;
-                categoryDiv.appendChild(newsDiv);
+            container.innerHTML = ""; // Clear existing content
+
+            Object.keys(data).forEach(category => {
+                let categoryDiv = document.createElement("div");
+                categoryDiv.classList.add("news-category");
+                categoryDiv.innerHTML = `<h3>${category}</h3>`;
+                container.appendChild(categoryDiv);
+
+                data[category].forEach(news => {
+                    let newsDiv = document.createElement("div");
+                    newsDiv.classList.add("news-card");
+                    newsDiv.innerHTML = `
+                        <h4><a href="${news.link}" target="_blank">${news.title}</a></h4>
+                        <p>${news.summary}</p>
+                        <a href="${news.link}" class="read-more" target="_blank">Read More</a>
+                    `;
+                    categoryDiv.appendChild(newsDiv);
+                });
             });
-        });
 
-    } catch (error) {
-        console.error("❌ Error fetching news:", error);
-        document.getElementById("news-container").innerHTML = "<p>Failed to load news.</p>";
+        } catch (error) {
+            console.error("❌ Error fetching news:", error);
+            let container = document.getElementById("news-container");
+            if (container) container.innerHTML = "<p>Failed to load news.</p>";
+        }
     }
-}
 
-document.addEventListener("DOMContentLoaded", fetchNews);
+    // ✅ Carousel Pause/Resume Functions
+    let autoRotate;
+    function pauseCarouselAnimation() {
+        let carousel = document.querySelector('.carousel');
+        if (carousel) {
+            carousel.style.animationPlayState = 'paused';
+            clearInterval(autoRotate);
+        }
+    }
 
+    function resumeCarouselAnimation() {
+        let carousel = document.querySelector('.carousel');
+        if (carousel) {
+            carousel.style.animationPlayState = 'running';
+            startAutoRotate();
+        }
+    }
 
-
-// ✅ GSAP (TweenMax) Carousel Fix
-if (typeof TweenMax === "undefined") {
-    console.error("TweenMax is not loaded. Make sure to include GSAP in index.html.");
-} else {
-    console.log("✅ TweenMax is loaded.");
-}
-
-// ✅ Ensure jQuery is loaded for carousel interactions
-$(document).ready(function () {
-    $(".carousel").hover(pauseCarouselAnimation, resumeCarouselAnimation);
-});
-
-
-window.addEventListener("scroll", () => {
-    let navbar = document.querySelector(".navbar");
-    if (window.scrollY > 50) {
-        navbar.style.backgroundColor = "#001122"; /* Darker background */
+    // ✅ GSAP Check
+    if (typeof TweenMax === "undefined") {
+        console.warn("⚠️ TweenMax is not loaded. Include GSAP if animations require it.");
     } else {
-        navbar.style.backgroundColor = "rgba(0, 34, 68, 0.9)";
+        console.log("✅ TweenMax is loaded.");
     }
-});
 
+    // ✅ Carousel Hover (jQuery)
+    if (typeof $ !== "undefined") {
+        $(".carousel").hover(pauseCarouselAnimation, resumeCarouselAnimation);
+    }
+
+    // ✅ Placeholder: Define startAutoRotate if needed
+    function startAutoRotate() {
+        // Example placeholder for auto rotation logic if implemented
+        // autoRotate = setInterval(() => { ... }, 3000);
+    }
+
+    console.log("✅ All scripts initialized successfully.");
+});
