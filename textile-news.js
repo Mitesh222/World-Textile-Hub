@@ -1,47 +1,59 @@
 document.addEventListener("DOMContentLoaded", function () {
   const newsSearch = document.getElementById("newsSearch");
   const newsFilter = document.getElementById("newsFilter");
-  const newsContainer = document.getElementById("news-container"); // FIXED: Ensure correct ID
+  const newsContainer = document.getElementById("news-container");
 
   if (!newsSearch || !newsFilter || !newsContainer) {
-    console.error("Error: Required elements (newsSearch, newsFilter, or newsContainer) are missing in HTML.");
+    console.error("Error: Required elements (newsSearch, newsFilter, newsContainer) are missing in HTML.");
     return;
   }
 
-  let newsData = [];
+  // Make newsData accessible globally for debugging
+  window.newsData = [];
 
   async function fetchNews() {
     try {
       const response = await fetch("news.json");
       if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-      newsData = await response.json();
-      console.log("Fetched news data:", newsData); // Debugging
+
+      const data = await response.json();
+
+      // Check if data is an array or object
+      if (Array.isArray(data)) {
+        window.newsData = data;
+      } else if (data.news && Array.isArray(data.news)) {
+        window.newsData = data.news;
+      } else {
+        throw new Error("Invalid JSON structure. Expected array or { news: [...] }");
+      }
+
+      console.log("✅ Fetched newsData:", window.newsData);
       populateCategories();
-      renderNews(newsData);
+      renderNews(window.newsData);
     } catch (error) {
-      console.error("Error fetching news:", error);
+      console.error("❌ Error fetching news:", error);
     }
   }
 
   function populateCategories() {
-    const categoriesFromJson = [...new Set(newsData.map(item => item.category.trim()))];
-    console.log("Categories from JSON:", categoriesFromJson); // Debugging
+    const categories = [...new Set(window.newsData.map(item => item.category.trim()))];
+    const dropdownOptions = ["All Categories", ...categories];
 
-    const dropdownOptions = ["All Categories", ...categoriesFromJson];
-    newsFilter.innerHTML = dropdownOptions.map(category => `<option value="${category}">${category}</option>`).join('');
+    newsFilter.innerHTML = dropdownOptions.map(category =>
+      `<option value="${category}">${category}</option>`).join('');
   }
 
   function filterNews() {
-    const selectedCategory = newsFilter.value.trim(); // FIXED: Keep case and exact match
+    const selectedCategory = newsFilter.value.trim();
     const searchQuery = newsSearch.value.toLowerCase().trim();
 
-    const filteredNews = newsData.filter(item => {
+    const filteredNews = window.newsData.filter(item => {
       const categoryMatch = selectedCategory === "All Categories" || item.category.trim() === selectedCategory;
       const searchMatch = item.title.toLowerCase().includes(searchQuery);
       return categoryMatch && searchMatch;
     });
 
-    console.log("Filtered news:", filteredNews); // Debugging
+    console.log("🔎 Filtered news:", filteredNews);
     renderNews(filteredNews);
   }
 
@@ -86,10 +98,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Attach event listeners
+  // Event listeners
   newsFilter.addEventListener("change", filterNews);
   newsSearch.addEventListener("keyup", filterNews);
 
-  // Fetch news on page load
-  fetchNews();
+  fetchNews(); // Load news on page load
 });
