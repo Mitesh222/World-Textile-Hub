@@ -38,7 +38,30 @@ window.addEventListener("DOMContentLoaded", function () {
     let menuToggle = document.querySelector('.menu-toggle');
     let navLinks = document.querySelector('.nav-links');
     if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+        if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        menuToggle.classList.toggle('open'); // Optional: icon transform
+    });
+
+    // Close menu when a nav link is clicked (optional for better UX)
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            menuToggle.classList.remove('open');
+        });
+    });
+
+    // Optional: Close menu if clicked outside
+    document.addEventListener('click', (e) => {
+        const isClickInside = navLinks.contains(e.target) || menuToggle.contains(e.target);
+        if (!isClickInside) {
+            navLinks.classList.remove('active');
+            menuToggle.classList.remove('open');
+        }
+    });
+}
+
     }
 
     // Smooth Scroll

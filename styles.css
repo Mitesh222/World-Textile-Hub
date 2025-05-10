@@ -1163,41 +1163,73 @@ footer p {
 }
 
 
-/* Media Queries: Mobile Adjustments */
 @media (max-width: 768px) {
-    /* Adjust Navbar */
-    .navbar {
-        flex-direction: column;
-        padding: 10px 0;
-    }
+  .navbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    position: relative;
+  }
 
-    .navbar .nav-links {
-        flex-direction: column;
-        display: none;
-        width: 100%;
-    }
+  .menu-toggle {
+    display: block;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+    z-index: 1001;
+  }
 
-    .navbar .nav-links.active {
-        display: flex;
-    }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* adjust based on your navbar height */
+    right: 10px;
+    background-color: #002244;
+    width: 85vw;
+    max-width: 300px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
 
-    .menu-toggle {
-        display: block;
-    }
+  .nav-links.active {
+    display: flex;
+  }
 
-    /* Adjust Hero Section */
-    .hero {
-        padding: 100px 0;
-    }
+  .nav-links li {
+    margin-bottom: 10px;
+  }
 
-    .animated-title {
-        font-size: 28px;
-    }
+  .nav-links li a {
+    color: #fff;
+    display: block;
+    padding: 10px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+  }
 
-    .animated-text {
-        font-size: 16px;
-        max-width: 90%;
-    }
+  .nav-links li a:hover {
+    background-color: #007777;
+  }
+
+  /* Hero section adjustments */
+  .hero {
+    padding: 100px 0;
+  }
+
+  .animated-title {
+    font-size: 28px;
+  }
+
+  .animated-text {
+    font-size: 16px;
+    max-width: 90%;
+  }
+}
+
 
     /* Adjust Consulting Section */
     .consulting-content {
